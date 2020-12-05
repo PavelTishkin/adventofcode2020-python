@@ -4,3 +4,4 @@ Solutions are written in Python
 * Day 2 - Validate a string based on a specific rule of characters count and location
 * Day 3 - Count number of trees encountered while sliding down a slope
 * Day 4 - Validate passports based on fields and rules
+* Day 5 - Parse ticket numbers and find missing ticket
