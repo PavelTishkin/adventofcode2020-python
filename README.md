@@ -6,3 +6,4 @@ Solutions are written in Python
 * Day 4 - Validate passports based on fields and rules
 * Day 5 - Parse ticket numbers and find missing ticket
 * Day 6 - Process collections of answers from a questionnaire
+* Day 7 - Count how many bags are contained in a recursive bag
