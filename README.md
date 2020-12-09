@@ -7,3 +7,5 @@ Solutions are written in Python
 * Day 5 - Parse ticket numbers and find missing ticket
 * Day 6 - Process collections of answers from a questionnaire
 * Day 7 - Count how many bags are contained in a recursive bag
+* Day 8 - Debug Handheld Game Console input to detect and recover from a loop
+* Day 9 - Find a weak number and encryption weakness in a list of numbers
