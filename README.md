@@ -9,3 +9,4 @@ Solutions are written in Python
 * Day 7 - Count how many bags are contained in a recursive bag
 * Day 8 - Debug Handheld Game Console input to detect and recover from a loop
 * Day 9 - Find a weak number and encryption weakness in a list of numbers
+* Day 10 - Find possible permutations of adapters with specified jolt difference
