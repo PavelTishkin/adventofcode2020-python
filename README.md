@@ -11,3 +11,4 @@ Solutions are written in Python
 * Day 9 - Find a weak number and encryption weakness in a list of numbers
 * Day 10 - Find possible permutations of adapters with specified jolt difference
 * Day 11 - Find which seats are occupied and which are empty based on occupancy rule
+* Day 12 - Find ship position after moving using directions and waypoints
