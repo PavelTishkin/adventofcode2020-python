@@ -13,3 +13,4 @@ Solutions are written in Python
 * Day 11 - Find which seats are occupied and which are empty based on occupancy rule
 * Day 12 - Find ship position after moving using directions and waypoints
 * Day 13 - Find bus departure and solve for optimal timetable
+* Day 14 - Assign values to memory using mask and fluctuating addresses
