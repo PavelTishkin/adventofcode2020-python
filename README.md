@@ -14,3 +14,4 @@ Solutions are written in Python
 * Day 12 - Find ship position after moving using directions and waypoints
 * Day 13 - Find bus departure and solve for optimal timetable
 * Day 14 - Assign values to memory using mask and fluctuating addresses
+* Day 15 - Find next numbers is a number memory game
