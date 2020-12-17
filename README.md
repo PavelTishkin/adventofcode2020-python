@@ -15,3 +15,4 @@ Solutions are written in Python
 * Day 13 - Find bus departure and solve for optimal timetable
 * Day 14 - Assign values to memory using mask and fluctuating addresses
 * Day 15 - Find next numbers is a number memory game
+* Day 16 - Find valid tickets and correct field order by process of elimination
