@@ -21,6 +21,10 @@ class MainTestCase(unittest.TestCase):
             'aaaabbb'
         ]
 
+        input_file = open('input/day19_test.txt', 'r')
+        self.rules_messages_rec = list(map(lambda l: l.strip(), input_file.readlines()))
+        input_file.close()
+
     def test_parse_rule_returns_correct_leaf_rule(self):
         actual = main.parse_rule('4: "a"')
         self.assertEqual(actual.rule_id, 4)
@@ -122,3 +126,37 @@ class MainTestCase(unittest.TestCase):
         self.assertNotIn('bababa', actual.keys())
         self.assertNotIn('aaabbb', actual.keys())
         self.assertNotIn('aaaabbb', actual.keys())
+
+    def test_match_messages_non_recursive_rules(self):
+        rules, messages = main.parse_rules_messages(self.rules_messages_rec)
+        main.link_rules(rules)
+        rule = rules[0]
+        messages = main.init_messages_remainders(messages)
+        matched_messages = rule.match_messages(messages)
+        actual = main.discard_messages_with_remainders(matched_messages)
+        self.assertIn('bbabbbbaabaabba', actual.keys())
+        self.assertIn('ababaaaaaabaaab', actual.keys())
+        self.assertIn('ababaaaaabbbaba', actual.keys())
+        self.assertEqual(len(actual.keys()), 3)
+
+    def test_match_messages_recursive_rules(self):
+        rules, messages = main.parse_rules_messages(self.rules_messages_rec)
+        rules[8] = main.Rule(8, 'branch', [[42], [42, 8]])
+        rules[11] = main.Rule(11, 'branch', [[42, 31], [42, 11, 31]])
+        main.link_rules(rules)
+        rule = rules[0]
+        messages = main.init_messages_remainders(messages)
+        matched_messages = rule.match_messages(messages)
+        actual = main.discard_messages_with_remainders(matched_messages)
+        self.assertIn('bbabbbbaabaabba', actual.keys())
+        self.assertIn('babbbbaabbbbbabbbbbbaabaaabaaa', actual.keys())
+        self.assertIn('aaabbbbbbaaaabaababaabababbabaaabbababababaaa', actual.keys())
+        self.assertIn('bbbbbbbaaaabbbbaaabbabaaa', actual.keys())
+        self.assertIn('bbbababbbbaaaaaaaabbababaaababaabab', actual.keys())
+        self.assertIn('ababaaaaaabaaab', actual.keys())
+        self.assertIn('ababaaaaabbbaba', actual.keys())
+        self.assertIn('baabbaaaabbaaaababbaababb', actual.keys())
+        self.assertIn('abbbbabbbbaaaababbbbbbaaaababb', actual.keys())
+        self.assertIn('aaaaabbaabaaaaababaa', actual.keys())
+        self.assertIn('aaaabbaabbaaaaaaabbbabbbaaabbaabaaa', actual.keys())
+        self.assertIn('aabbbbbaabbbaaaaaabbbbbababaaaaabbaaabba', actual.keys())

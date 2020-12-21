@@ -14,6 +14,16 @@ def main():
     matched_messages = discard_messages_with_remainders(matched_messages)
     print('Answer 1: {}'.format(len(matched_messages)))
 
+    rules, messages = parse_rules_messages(rules_messages_txt)
+    rules[8] = Rule(8, 'branch', linked_rules_ids=[[42], [42, 8]])
+    rules[11] = Rule(11, 'branch', linked_rules_ids=[[42, 31], [42, 11, 31]])
+    link_rules(rules)
+    rule = rules[0]
+    messages = init_messages_remainders(messages)
+    matched_messages = rule.match_messages(messages)
+    matched_messages = discard_messages_with_remainders(matched_messages)
+    print('Answer 2: {}'.format(len(matched_messages)))
+
 
 def parse_rules_messages(rules_messages_txt):
     is_rules = True
@@ -54,7 +64,7 @@ def link_rules(rules):
 
 
 def discard_messages_with_remainders(messages):
-    return {message: remainder for message, remainder in messages.items() if len(remainder) == 1 and '' in remainder}
+    return {message: remainder for message, remainder in messages.items() if '' in remainder}
 
 
 def init_messages_remainders(messages):
@@ -98,32 +108,41 @@ class Rule:
         else:
             raise Exception('Unknown rule type')
 
-    def match_messages(self, messages):
+    def match_messages(self, messages, depth=0):
         """
         Matches list of messages.
         Returns subset of messages valid according to current rule and remainder of unmatched message
         :param messages: List of messages to match, including remainder if previous rules have been applied
+        :param depth: Optional parameter to detect recursive loops
         :return: List of valid messages and remainders
         """
         matched_messages = {}
 
+        msg_list = [msg for msg in messages.keys()]
+        if not msg_list:
+            return matched_messages
+
+        longest_msg = max([len(msg) for msg in msg_list])
+        if depth > longest_msg:
+            return matched_messages
+
         if self.rule_type == 'trunk':
             matched_messages = messages
             for rule in self.trunk_rules:
-                matched_messages = rule.match_messages(matched_messages)
+                matched_messages = rule.match_messages(matched_messages, depth+1)
         elif self.rule_type == 'branch':
             matched_left_messages = messages
             matched_right_messages = messages
             for rule in self.left_branch_rules:
-                matched_left_messages = rule.match_messages(matched_left_messages)
+                matched_left_messages = rule.match_messages(matched_left_messages, depth+1)
             for rule in self.right_branch_rules:
-                matched_right_messages = rule.match_messages(matched_right_messages)
+                matched_right_messages = rule.match_messages(matched_right_messages, depth+1)
 
             # Combine results of left and right branches
             matched_messages = {**matched_left_messages, **matched_right_messages}
-            for message, remainder in matched_messages.items():
+            for message, _ in matched_messages.items():
                 if message in matched_left_messages and message in matched_right_messages:
-                    matched_messages[message] = remainder.union(matched_right_messages[message])
+                    matched_messages[message] = matched_left_messages[message].union(matched_right_messages[message])
 
         elif self.rule_type == 'leaf':
             for message in messages:
