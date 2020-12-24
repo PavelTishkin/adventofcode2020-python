@@ -20,3 +20,4 @@ Solutions are written in Python
 * Day 18 - Calculate equation using custom precedence rules
 * Day 19 - Analyze pattern based on rules
 * Day 20 - Analyze satellite image, piece together and find a matching pattern 
+* Day 21 - Find ingredient and allergens matchup by process of elimination
