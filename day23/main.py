@@ -1,10 +1,10 @@
 import sys
 import numpy as np
-from numba import njit, jit
+from numba import jit
 
 
 def main():
-    input_number = sys.argv[0]
+    input_number = sys.argv[1]
 
     cup_sequence = [int(n) for n in list(input_number)]
 
