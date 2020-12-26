@@ -22,3 +22,4 @@ Solutions are written in Python
 * Day 20 - Analyze satellite image, piece together and find a matching pattern 
 * Day 21 - Find ingredient and allergens matchup by process of elimination
 * Day 22 - Play a crab at a game of Recursive Combat (and lose)
+* Day 23 - Play a crab at a game of cups ang get the stars back
