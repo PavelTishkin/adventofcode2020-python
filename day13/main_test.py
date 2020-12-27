@@ -54,3 +54,9 @@ class MainTestCase(unittest.TestCase):
         schedule = [1789, 37, 47, 1889]
         actual = main.get_first_timestamp_sequential_departure(schedule)
         self.assertEqual(actual, 1202161486)
+
+    def test_calculate_crt(self):
+        schedule = [1789, 37, 47, 1889]
+        actual = main.calculate_crt(schedule)
+        self.assertEqual(actual, 1202161486)
+
