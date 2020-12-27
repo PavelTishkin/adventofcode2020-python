@@ -24,3 +24,4 @@ Solutions are written in Python
 * Day 22 - Play a crab at a game of Recursive Combat (and lose)
 * Day 23 - Play a crab at a game of cups ang get the stars back
 * Day 24 - Conway game of life on a hexagon grid
+* Day 25 - Solve discrete log problem using baby step - giant step algorithm
